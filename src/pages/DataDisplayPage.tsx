@@ -1,22 +1,24 @@
-import { ComponentDemo } from '../components/ComponentDemo'
+import { CategoryPage } from '../components/CategoryPage'
 import { cardConfig, tableConfig, badgeConfig, avatarConfig, timelineConfig, statConfig, emptyStateConfig, codeBlockConfig, iframeConfig, mediaConfig, dividerConfig } from '../data/dataDisplay'
 
 export default function DataDisplayPage() {
   return (
-    <div>
-      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.75rem', fontWeight: 700 }}>📋 Data Display</h2>
-      <p style={{ margin: '0 0 2rem', color: '#64748b' }}>Components for displaying data, content, and media.</p>
-      <ComponentDemo title="Card" description="layout: 'card'" initialConfig={cardConfig} />
-      <ComponentDemo title="Table" description="layout: 'table'" initialConfig={tableConfig} />
-      <ComponentDemo title="Badge" description="layout: 'badge'" initialConfig={badgeConfig} />
-      <ComponentDemo title="Avatar" description="layout: 'avatar'" initialConfig={avatarConfig} />
-      <ComponentDemo title="Timeline" description="layout: 'timeline'" initialConfig={timelineConfig} />
-      <ComponentDemo title="Stat / KPI" description="layout: 'stat'" initialConfig={statConfig} />
-      <ComponentDemo title="Empty State" description="layout: 'empty-state'" initialConfig={emptyStateConfig} />
-      <ComponentDemo title="Code Block" description="layout: 'code-block'" initialConfig={codeBlockConfig} />
-      <ComponentDemo title="iFrame" description="layout: 'iframe'" initialConfig={iframeConfig} />
-      <ComponentDemo title="Media / Carousel" description="layout: 'media'" initialConfig={mediaConfig} />
-      <ComponentDemo title="Divider" description="layout: 'divider'" initialConfig={dividerConfig} />
-    </div>
+    <CategoryPage
+      title="📋 Data Display"
+      description="Components for presenting structured data and content."
+      items={[
+        { id: 'card', label: 'Card', config: cardConfig },
+        { id: 'table', label: 'Table', config: tableConfig },
+        { id: 'badge', label: 'Badge', config: badgeConfig },
+        { id: 'avatar', label: 'Avatar', config: avatarConfig },
+        { id: 'timeline', label: 'Timeline', config: timelineConfig },
+        { id: 'stat', label: 'Stat', config: statConfig },
+        { id: 'empty-state', label: 'Empty State', config: emptyStateConfig },
+        { id: 'code-block', label: 'Code Block', config: codeBlockConfig },
+        { id: 'iframe', label: 'iFrame', config: iframeConfig },
+        { id: 'media', label: 'Media', config: mediaConfig },
+        { id: 'divider', label: 'Divider', config: dividerConfig },
+      ]}
+    />
   )
 }

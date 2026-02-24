@@ -1,35 +1,32 @@
-import { ComponentDemo } from '../components/ComponentDemo'
-import {
-  inputConfig, checkboxConfig, radioConfig, textareaConfig, selectConfig,
-  buttonConfig, labelConfig, fieldsetConfig, datalistConfig, outputConfig,
-  datepickerConfig, multiselectConfig, autocompleteConfig, fileuploadConfig,
-  colorpickerConfig, rangesliderConfig, ratingConfig, otpinputConfig, phoneinputConfig
-} from '../data/fields'
+import { CategoryPage } from '../components/CategoryPage'
+import { inputConfig, checkboxConfig, radioConfig, textareaConfig, selectConfig, buttonConfig, labelConfig, fieldsetConfig, datalistConfig, outputConfig, datepickerConfig, multiselectConfig, autocompleteConfig, fileuploadConfig, colorpickerConfig, rangesliderConfig, ratingConfig, otpinputConfig, phoneinputConfig } from '../data/fields'
 
 export default function FieldsPage() {
   return (
-    <div>
-      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.75rem', fontWeight: 700 }}>📝 Fields</h2>
-      <p style={{ margin: '0 0 2rem', color: '#64748b' }}>All form field types supported by react-ubiquitous.</p>
-      <ComponentDemo title="Input Fields" description="type: 'input'" initialConfig={inputConfig} />
-      <ComponentDemo title="Checkboxes" description="type: 'checkbox'" initialConfig={checkboxConfig} />
-      <ComponentDemo title="Radio Buttons" description="type: 'radio'" initialConfig={radioConfig} />
-      <ComponentDemo title="Textarea" description="type: 'textarea'" initialConfig={textareaConfig} />
-      <ComponentDemo title="Select Dropdowns" description="type: 'select'" initialConfig={selectConfig} />
-      <ComponentDemo title="Buttons" description="type: 'button'" initialConfig={buttonConfig} />
-      <ComponentDemo title="Labels" description="type: 'label'" initialConfig={labelConfig} />
-      <ComponentDemo title="Fieldset" description="type: 'fieldset'" initialConfig={fieldsetConfig} />
-      <ComponentDemo title="Datalist" description="type: 'datalist'" initialConfig={datalistConfig} />
-      <ComponentDemo title="Output (Formula)" description="type: 'output'" initialConfig={outputConfig} />
-      <ComponentDemo title="Date Pickers" description="type: 'datepicker'" initialConfig={datepickerConfig} />
-      <ComponentDemo title="Multi-Select" description="type: 'multiselect'" initialConfig={multiselectConfig} />
-      <ComponentDemo title="Autocomplete" description="type: 'autocomplete'" initialConfig={autocompleteConfig} />
-      <ComponentDemo title="File Upload" description="type: 'fileupload'" initialConfig={fileuploadConfig} />
-      <ComponentDemo title="Color Picker" description="type: 'colorpicker'" initialConfig={colorpickerConfig} />
-      <ComponentDemo title="Range Slider" description="type: 'rangeslider'" initialConfig={rangesliderConfig} />
-      <ComponentDemo title="Rating" description="type: 'rating'" initialConfig={ratingConfig} />
-      <ComponentDemo title="OTP Input" description="type: 'otpinput'" initialConfig={otpinputConfig} />
-      <ComponentDemo title="Phone Input" description="type: 'phoneinput'" initialConfig={phoneinputConfig} />
-    </div>
+    <CategoryPage
+      title="📝 Fields"
+      description="All supported form field and input types."
+      items={[
+        { id: 'input', label: 'Input', config: inputConfig },
+        { id: 'checkbox', label: 'Checkbox', config: checkboxConfig },
+        { id: 'radio', label: 'Radio', config: radioConfig },
+        { id: 'textarea', label: 'Textarea', config: textareaConfig },
+        { id: 'select', label: 'Select', config: selectConfig },
+        { id: 'button', label: 'Button', config: buttonConfig },
+        { id: 'label', label: 'Label', config: labelConfig },
+        { id: 'fieldset', label: 'Fieldset', config: fieldsetConfig },
+        { id: 'datalist', label: 'Datalist', config: datalistConfig },
+        { id: 'output', label: 'Output', config: outputConfig },
+        { id: 'datepicker', label: 'Datepicker', config: datepickerConfig },
+        { id: 'multiselect', label: 'Multi-Select', config: multiselectConfig },
+        { id: 'autocomplete', label: 'Autocomplete', config: autocompleteConfig },
+        { id: 'fileupload', label: 'File Upload', config: fileuploadConfig },
+        { id: 'colorpicker', label: 'Color Picker', config: colorpickerConfig },
+        { id: 'rangeslider', label: 'Range Slider', config: rangesliderConfig },
+        { id: 'rating', label: 'Rating', config: ratingConfig },
+        { id: 'otpinput', label: 'OTP Input', config: otpinputConfig },
+        { id: 'phoneinput', label: 'Phone Input', config: phoneinputConfig },
+      ]}
+    />
   )
 }
