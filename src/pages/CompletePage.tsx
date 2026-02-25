@@ -31,8 +31,8 @@ export default function CompletePage() {
     pageTransition: transition,
     pages: [
       {
-        id: 'home',
-        title: '🏠 Home',
+        id: 'blog',
+        title: '📝 Blog',
         order: 0,
         sections: [
           blogHeroConfig as UISectionConfig,
