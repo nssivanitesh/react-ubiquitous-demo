@@ -1,5 +1,12 @@
 import { useTheme, type UITheme, type UIPageTransition } from '../contexts/ThemeContext'
 
+export type AppMode = 'complete' | 'individual'
+
+const MODE_OPTIONS: { id: AppMode; label: string; icon: string }[] = [
+  { id: 'complete', label: 'Complete', icon: '🗂️' },
+  { id: 'individual', label: 'Individual', icon: '🧩' },
+]
+
 const THEME_OPTIONS: { id: UITheme; label: string; icon: string; description: string }[] = [
   { id: 'html', label: 'HTML', icon: '🌐', description: 'Follows ambient/system styles' },
   { id: 'light', label: 'Light', icon: '☀️', description: 'Force light mode' },
@@ -14,7 +21,7 @@ const TRANSITION_OPTIONS: { id: UIPageTransition; label: string; icon: string }[
   { id: 'slide-right', label: 'Slide ←', icon: '⬅️' },
 ]
 
-export function TopBar() {
+export function TopBar({ mode, setMode }: { mode: AppMode; setMode: (m: AppMode) => void }) {
   const { theme, setTheme, transition, setTransition, colors } = useTheme()
 
   const btnBase: React.CSSProperties = {
@@ -41,6 +48,28 @@ export function TopBar() {
       flexShrink: 0,
       gap: '1.25rem',
     }}>
+      {/* Mode */}
+      <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+        <span style={{ fontSize: '0.73rem', color: colors.sidebarTextMuted, marginRight: '0.1rem' }}>Mode:</span>
+        {MODE_OPTIONS.map(opt => {
+          const isActive = mode === opt.id
+          return (
+            <button key={opt.id} onClick={() => setMode(opt.id)} title={opt.label} style={{
+              ...btnBase,
+              border: isActive ? `1.5px solid ${colors.sidebarActive}` : `1px solid ${colors.sidebarBorder}`,
+              background: isActive ? colors.sidebarActive : 'transparent',
+              color: isActive ? '#ffffff' : colors.sidebarTextMuted,
+              fontWeight: isActive ? 600 : 400,
+            }}>
+              {opt.icon} {opt.label}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Divider */}
+      <div style={{ width: '1px', height: '24px', background: colors.sidebarBorder }} />
+
       {/* Theme */}
       <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
         <span style={{ fontSize: '0.73rem', color: colors.sidebarTextMuted, marginRight: '0.1rem' }}>Theme:</span>
