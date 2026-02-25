@@ -7,6 +7,20 @@ import { listDetailConfig, heroConfig } from '../data/layout'
 import { tabsConfig, stepperConfig } from '../data/navigation'
 import { accordionConfig } from '../data/disclosure'
 import { alertSuccessConfig, progressConfig } from '../data/feedback'
+import {
+  blogHeroConfig,
+  blogPainPointsConfig,
+  blogDivider1Config,
+  blogPackagesBadgesConfig,
+  blogDivider2Config,
+  blogStatsConfig,
+  blogCodeConfig,
+  blogTimelineConfig,
+  blogShowcaseChartConfig,
+  blogShowcaseTableConfig,
+  blogAlertConfig,
+  blogCtaHeroConfig,
+} from '../data/blog'
 
 export default function CompletePage() {
   const { theme, transition } = useTheme()
@@ -58,6 +72,25 @@ export default function CompletePage() {
           { ...accordionConfig, order: 2 } as UISectionConfig,
           { ...progressConfig, order: 3 } as UISectionConfig,
           { ...alertSuccessConfig, order: 4 } as UISectionConfig,
+        ],
+      },
+      {
+        id: 'blog',
+        title: '📝 Blog',
+        order: 4,
+        sections: [
+          blogHeroConfig as UISectionConfig,
+          blogPainPointsConfig as UISectionConfig,
+          blogDivider1Config as UISectionConfig,
+          blogPackagesBadgesConfig as UISectionConfig,
+          blogDivider2Config as UISectionConfig,
+          blogStatsConfig as UISectionConfig,
+          blogCodeConfig as UISectionConfig,
+          blogTimelineConfig as UISectionConfig,
+          blogShowcaseChartConfig as UISectionConfig,
+          blogShowcaseTableConfig as UISectionConfig,
+          blogAlertConfig as UISectionConfig,
+          blogCtaHeroConfig as UISectionConfig,
         ],
       },
     ],
