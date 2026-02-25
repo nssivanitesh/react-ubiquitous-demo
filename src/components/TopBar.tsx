@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useTheme, type UITheme, type UIPageTransition } from '../contexts/ThemeContext'
 
-export type AppMode = 'complete' | 'individual'
+export type AppMode = 'complete' | 'individual' | 'theme-generator'
 
 const MODE_OPTIONS: { id: AppMode; label: string; icon: string }[] = [
   { id: 'complete', label: 'Complete', icon: '🗂️' },
   { id: 'individual', label: 'Individual', icon: '🧩' },
+  { id: 'theme-generator', label: 'Theme Generator', icon: '🎨' },
 ]
 
 const THEME_OPTIONS: { id: UITheme; label: string; icon: string; description: string }[] = [

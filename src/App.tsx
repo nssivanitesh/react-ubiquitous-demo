@@ -9,6 +9,7 @@ import DisclosurePage from './pages/DisclosurePage'
 import DataDisplayPage from './pages/DataDisplayPage'
 import FieldsPage from './pages/FieldsPage'
 import CompletePage from './pages/CompletePage'
+import ThemeGeneratorPage from './pages/ThemeGeneratorPage'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 import { TopBar, type AppMode } from './components/TopBar'
 
@@ -35,7 +36,11 @@ function AppShell() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
       <TopBar mode={mode} setMode={setMode} />
-      {mode === 'complete' ? (
+      {mode === 'theme-generator' ? (
+        <main style={{ flex: 1, overflow: 'auto', background: colors.content, color: colors.contentText }}>
+          <ThemeGeneratorPage />
+        </main>
+      ) : mode === 'complete' ? (
         <main style={{ flex: 1, padding: '2rem', overflow: 'auto', background: colors.content, color: colors.contentText }}>
           <CompletePage />
         </main>
