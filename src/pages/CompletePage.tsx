@@ -3,12 +3,13 @@ import type { UIStageConfig, UISectionConfig } from 'react-ubiquitous'
 import { useTheme } from '../contexts/ThemeContext'
 import { barChartConfig, lineChartConfig, donutChartConfig, areaChartConfig } from '../data/charts'
 import { statConfig, tableConfig, timelineConfig, mediaConfig, cardConfig } from '../data/dataDisplay'
-import { listDetailConfig, heroConfig, chatConfig } from '../data/layout'
+import { listDetailConfig, heroConfig, chatConfig, treeViewConfig } from '../data/layout'
 import { tabsConfig, stepperConfig } from '../data/navigation'
 import { accordionConfig } from '../data/disclosure'
 import { alertSuccessConfig, progressConfig } from '../data/feedback'
 import {
   blogHeroConfig,
+  blogMediaConfig,
   blogPainPointsConfig,
   blogDivider1Config,
   blogPackagesBadgesConfig,
@@ -36,13 +37,14 @@ export default function CompletePage() {
         order: 0,
         sections: [
           blogHeroConfig as UISectionConfig,
+          blogMediaConfig as UISectionConfig,
+          blogTimelineConfig as UISectionConfig,
           blogPainPointsConfig as UISectionConfig,
           blogDivider1Config as UISectionConfig,
           blogPackagesBadgesConfig as UISectionConfig,
           blogDivider2Config as UISectionConfig,
           blogStatsConfig as UISectionConfig,
           blogCodeConfig as UISectionConfig,
-          blogTimelineConfig as UISectionConfig,
           blogShowcaseChartConfig as UISectionConfig,
           blogShowcaseTableConfig as UISectionConfig,
           blogAlertConfig as UISectionConfig,
@@ -68,7 +70,8 @@ export default function CompletePage() {
         sections: [
           listDetailConfig as UISectionConfig,
           { ...tableConfig, order: 1 } as UISectionConfig,
-          { ...chatConfig, order: 2 } as UISectionConfig,
+          { ...treeViewConfig, order: 2 } as UISectionConfig,
+          { ...chatConfig, order: 3 } as UISectionConfig,
         ],
       },
       {

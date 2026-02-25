@@ -1,5 +1,5 @@
 import { CategoryPage } from '../components/CategoryPage'
-import { flexConfig, gridConfig, heroConfig, listDetailConfig, chatConfig } from '../data/layout'
+import { flexConfig, gridConfig, heroConfig, listDetailConfig, chatConfig, treeViewConfig } from '../data/layout'
 
 export default function LayoutPage() {
   return (
@@ -11,6 +11,7 @@ export default function LayoutPage() {
         { id: 'grid', label: 'Grid', config: gridConfig },
         { id: 'hero', label: 'Hero', config: heroConfig },
         { id: 'list-detail', label: 'List-Detail', config: listDetailConfig },
+        { id: 'tree-view', label: 'Tree View', config: treeViewConfig },
         { id: 'chat', label: 'Chat', config: chatConfig },
       ]}
     />

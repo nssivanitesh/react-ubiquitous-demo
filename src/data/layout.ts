@@ -128,3 +128,127 @@ export const chatConfig = {
   ],
   elements: [],
 }
+
+export const treeViewConfig = {
+  id: 'tree-view-section',
+  layout: 'tree-view',
+  title: 'Organisation Chart',
+  treeTitle: 'Departments',
+  treeWidth: '280px',
+  treeMode: 'compact',
+  treeNodes: [
+    {
+      id: 'company',
+      label: 'Acme Corp',
+      sublabel: 'Headquarters',
+      badge: 'HQ',
+      children: [
+        {
+          id: 'engineering',
+          label: 'Engineering',
+          sublabel: '12 members',
+          badge: 'ENG',
+          children: [
+            {
+              id: 'frontend',
+              label: 'Frontend',
+              sublabel: '4 members',
+              children: [
+                { id: 'alice', label: 'Alice Johnson', sublabel: 'Lead Engineer', badge: 'Lead' },
+                { id: 'bob', label: 'Bob Smith', sublabel: 'Senior Engineer', badge: 'Sr.' },
+                { id: 'carol', label: 'Carol White', sublabel: 'Engineer', badge: 'Mid' },
+                { id: 'dan', label: 'Dan Park', sublabel: 'Junior Engineer', badge: 'Jr.' },
+              ],
+            },
+            {
+              id: 'backend',
+              label: 'Backend',
+              sublabel: '5 members',
+              children: [
+                { id: 'eve', label: 'Eve Torres', sublabel: 'Lead Engineer', badge: 'Lead' },
+                { id: 'frank', label: 'Frank Müller', sublabel: 'Senior Engineer', badge: 'Sr.' },
+                { id: 'grace', label: 'Grace Kim', sublabel: 'Engineer', badge: 'Mid' },
+              ],
+            },
+            {
+              id: 'devops',
+              label: 'DevOps',
+              sublabel: '3 members',
+              children: [
+                { id: 'henry', label: 'Henry Patel', sublabel: 'Infrastructure Lead', badge: 'Lead' },
+                { id: 'iris', label: 'Iris Chen', sublabel: 'SRE', badge: 'SRE' },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'product',
+          label: 'Product',
+          sublabel: '6 members',
+          badge: 'PROD',
+          children: [
+            { id: 'james', label: 'James Okafor', sublabel: 'Head of Product', badge: 'Head' },
+            {
+              id: 'design',
+              label: 'Design',
+              sublabel: '3 members',
+              children: [
+                { id: 'kate', label: 'Kate Larsson', sublabel: 'Design Lead', badge: 'Lead' },
+                { id: 'leo', label: 'Leo Nguyen', sublabel: 'UI Designer', badge: 'Mid' },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'operations',
+          label: 'Operations',
+          sublabel: '5 members',
+          badge: 'OPS',
+          children: [
+            {
+              id: 'hr',
+              label: 'Human Resources',
+              sublabel: '2 members',
+              children: [
+                { id: 'mia', label: 'Mia Santos', sublabel: 'HR Manager', badge: 'Mgr' },
+              ],
+            },
+            {
+              id: 'finance',
+              label: 'Finance',
+              sublabel: '3 members',
+              children: [
+                { id: 'noah', label: 'Noah Williams', sublabel: 'Finance Lead', badge: 'Lead' },
+                { id: 'olivia', label: 'Olivia Brown', sublabel: 'Accountant', badge: 'Acc' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  detailPages: [
+    {
+      id: 'profile',
+      title: 'Profile',
+      order: 0,
+      sections: [
+        {
+          id: 'tv-grid',
+          layout: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '1rem',
+          elements: [
+            { id: 'tv1', name: 'name', type: 'input', inputType: 'text', label: 'Full Name', order: 0 },
+            { id: 'tv2', name: 'department', type: 'input', inputType: 'text', label: 'Department', order: 1 },
+            { id: 'tv3', name: 'role', type: 'input', inputType: 'text', label: 'Role', order: 2 },
+            { id: 'tv4', name: 'email', type: 'input', inputType: 'email', label: 'Email', order: 3 },
+            { id: 'tv5', name: 'location', type: 'input', inputType: 'text', label: 'Location', order: 4 },
+            { id: 'tv6', name: 'startDate', type: 'input', inputType: 'text', label: 'Start Date', order: 5 },
+          ],
+        },
+      ],
+    },
+  ],
+  elements: [],
+}

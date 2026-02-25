@@ -2,26 +2,43 @@ export const blogHeroConfig = {
   id: 'blog-hero',
   layout: 'hero',
   order: 0,
-  title: 'Break Free from the Loop',
-  subtitle: 'One package. Every UI you need.',
+  title: 'One Backend Change. Every Client Updated.',
+  subtitle: 'Web · Desktop · iOS · Android — all from a single JSON config.',
   description:
-    'Build the backend API and watch the frontend grow — automatically.',
+    'Build your API once. react-ubiquitous turns it into a fully interactive UI across every platform — no per-client code, no App Store delays, no boilerplate.',
   backgroundType: 'gradient',
-  gradientFrom: '#4f46e5',
+  gradientFrom: '#1e1b4b',
   gradientTo: '#0f172a',
   gradientDirection: 'to bottom right',
-  minHeight: '320px',
+  minHeight: '380px',
   textAlign: 'center',
   verticalAlign: 'center',
   linkUrl: 'https://www.npmjs.com/package/react-ubiquitous',
-  linkText: '📦 Get react-ubiquitous on npm',
+  linkText: '📦 Get started — npm install react-ubiquitous',
+  elements: [],
+}
+
+export const blogMediaConfig = {
+  id: 'blog-media',
+  layout: 'media',
+  order: 1,
+  aspectRatio: '16/9',
+  items: [
+    {
+      id: 'arch-1',
+      type: 'image',
+      url: '/react-ubiquitous-architecture.png',
+      alt: 'react-ubiquitous architecture diagram — one backend API powering web, desktop and mobile clients',
+      caption: 'One backend API. Every client updated automatically.',
+    },
+  ],
   elements: [],
 }
 
 export const blogPainPointsConfig = {
   id: 'blog-pain-points',
   layout: 'accordion',
-  order: 1,
+  order: 2,
   title: '🤔 Sound familiar?',
   description:
     'If you answered yes to any of these, react-ubiquitous was built for you.',
@@ -105,7 +122,7 @@ export const blogPainPointsConfig = {
 export const blogDivider1Config = {
   id: 'blog-divider-1',
   layout: 'divider',
-  order: 2,
+  order: 3,
   label: 'The packages you\'d need — separately',
   orientation: 'horizontal',
   variant: 'solid',
@@ -115,7 +132,7 @@ export const blogDivider1Config = {
 export const blogPackagesBadgesConfig = {
   id: 'blog-packages-badges',
   layout: 'badge',
-  order: 3,
+  order: 4,
   title: '📦 Without react-ubiquitous, you\'d need all of these',
   description:
     'Each of these is a separate install, separate config, separate learning curve, and separate version to keep up to date.',
@@ -146,7 +163,7 @@ export const blogPackagesBadgesConfig = {
 export const blogDivider2Config = {
   id: 'blog-divider-2',
   layout: 'divider',
-  order: 4,
+  order: 5,
   label: 'One package to replace them all',
   orientation: 'horizontal',
   variant: 'solid',
@@ -156,7 +173,7 @@ export const blogDivider2Config = {
 export const blogStatsConfig = {
   id: 'blog-stats',
   layout: 'stat',
-  order: 5,
+  order: 6,
   title: '⚡ react-ubiquitous at a glance',
   columns: 4,
   stats: [
@@ -171,7 +188,7 @@ export const blogStatsConfig = {
 export const blogCodeConfig = {
   id: 'blog-code',
   layout: 'code-block',
-  order: 6,
+  order: 7,
   title: '🛠️ Go from backend API to full UI — in one config object',
   description:
     'Define your data source and layout. react-ubiquitous handles fetching, rendering, pagination, sorting, and state.',
@@ -230,51 +247,124 @@ export default function App() {
   elements: [],
 }
 
+export const blogTreeViewConfig = {
+  id: 'blog-tree-view',
+  layout: 'tree-view',
+  order: 8,
+  title: '🗂️ How a react-ubiquitous app is structured',
+  description:
+    'Every app is a tree: one UIStage root holds Pages, each Page holds Sections, and Sections hold Elements. Navigate the nodes below to see how the hierarchy maps to real UI.',
+  treeTitle: 'Config Hierarchy',
+  treeWidth: '280px',
+  treeMode: 'compact',
+  treeNodes: [
+    {
+      id: 'stage',
+      label: 'UIStage',
+      sublabel: 'Root config object',
+      badge: 'root',
+      children: [
+        {
+          id: 'page-dashboard',
+          label: 'Page: Dashboard',
+          sublabel: 'order: 0',
+          badge: 'page',
+          children: [
+            { id: 's-stat', label: 'stat', sublabel: 'KPI cards', badge: 'section' },
+            { id: 's-chart', label: 'chart', sublabel: 'bar / line / area / pie', badge: 'section' },
+            { id: 's-table', label: 'table', sublabel: 'sortable, searchable', badge: 'section' },
+          ],
+        },
+        {
+          id: 'page-contacts',
+          label: 'Page: Contacts',
+          sublabel: 'order: 1',
+          badge: 'page',
+          children: [
+            {
+              id: 's-list-detail',
+              label: 'list-detail',
+              sublabel: 'browse & inspect records',
+              badge: 'section',
+              children: [
+                { id: 'dp-profile', label: 'DetailPage: Profile', sublabel: 'tab 0 — form fields', badge: 'detail' },
+                { id: 'dp-activity', label: 'DetailPage: Activity', sublabel: 'tab 1 — timeline', badge: 'detail' },
+              ],
+            },
+            { id: 's-tree', label: 'tree-view', sublabel: 'hierarchical data explorer', badge: 'section' },
+            { id: 's-chat', label: 'chat', sublabel: 'messaging UI', badge: 'section' },
+          ],
+        },
+        {
+          id: 'page-settings',
+          label: 'Page: Settings',
+          sublabel: 'order: 2',
+          badge: 'page',
+          children: [
+            { id: 's-stepper', label: 'stepper', sublabel: 'multi-step wizard', badge: 'section' },
+            { id: 's-accordion', label: 'accordion', sublabel: 'expandable panels', badge: 'section' },
+            { id: 's-modal', label: 'modal / drawer', sublabel: 'overlay actions', badge: 'section' },
+          ],
+        },
+        {
+          id: 'page-blog',
+          label: 'Page: Blog / Home',
+          sublabel: 'order: 3',
+          badge: 'page',
+          children: [
+            { id: 's-hero', label: 'hero', sublabel: 'full-bleed header', badge: 'section' },
+            { id: 's-timeline', label: 'timeline', sublabel: 'sequential steps', badge: 'section' },
+            { id: 's-code-block', label: 'code-block', sublabel: 'syntax-highlighted code', badge: 'section' },
+            { id: 's-badge', label: 'badge', sublabel: 'tag cloud', badge: 'section' },
+          ],
+        },
+      ],
+    },
+  ],
+  elements: [],
+}
+
 export const blogTimelineConfig = {
   id: 'blog-timeline',
   layout: 'timeline',
-  order: 7,
-  title: '🗺️ Your new development workflow',
+  order: 2,
+  title: '🗺️ From API to every platform — in four steps',
   events: [
     {
       id: 'wf1',
-      title: 'npm install react-ubiquitous',
-      description: 'One command. No peer dependencies to juggle.',
+      title: 'Build your backend API response in JSON',
+      description:
+        'Design your API endpoints in any language — Node, Python, Go, Java, .NET. Return structured JSON. That single response is the source of truth for every client that will ever consume it. Fix a bug or reshape the data here, and every platform benefits automatically. No per-client patches required.',
       timestamp: 'Step 1',
       variant: 'primary',
-      icon: '📦',
+      icon: '🗄️',
     },
     {
       id: 'wf2',
-      title: 'Build your backend API',
-      description: 'REST endpoints, any language, any framework. react-ubiquitous speaks HTTP.',
+      title: 'Build your web app with react-ubiquitous and publish',
+      description:
+        'Install @nssivanitesh/react-ubiquitous, write a UIStageConfig, and point it at your API endpoints. Tables, charts, forms, navbars, sidebars — all rendered from JSON. No JSX components, no state management, no styling boilerplate. Deploy to any static host or CDN in minutes.',
       timestamp: 'Step 2',
       variant: 'primary',
-      icon: '🔧',
+      icon: '🌐',
     },
     {
       id: 'wf3',
-      title: 'Write a JSON config',
-      description: 'Describe your pages, layouts, and data sources. No JSX, no CSS, no state management code.',
+      title: 'Bundle for desktop with Electron — Mac, Windows & Linux',
+      description:
+        'Wrap the same React app in an Electron shell to produce native desktop installers for all three platforms. Zero UI code changes needed. When your backend API evolves, users get the updated interface the moment the app reloads — no new desktop release, no installer download.',
       timestamp: 'Step 3',
       variant: 'success',
-      icon: '🗂️',
+      icon: '🖥️',
     },
     {
       id: 'wf4',
-      title: 'Watch the frontend grow',
-      description: 'Tables, charts, forms, sidebars, navbars — fully rendered, wired, and interactive.',
+      title: 'Bundle for mobile with Capacitor — iPhone & Android',
+      description:
+        'Use Capacitor to package the same web app as a native iOS and Android binary. You do not need to test UI logic separately on each mobile platform. Logic bugs are resolved at the API layer once. UI rendering bugs are the responsibility of the react-ubiquitous package team — one fix there resolves the issue across every client simultaneously. No lengthy App Store review cycles just to ship a new button or feature.',
       timestamp: 'Step 4',
       variant: 'success',
-      icon: '🚀',
-    },
-    {
-      id: 'wf5',
-      title: 'Ship your product',
-      description: 'Focus on what makes your product unique, not on the plumbing underneath.',
-      timestamp: 'Step 5',
-      variant: 'success',
-      icon: '✅',
+      icon: '📱',
     },
   ],
   elements: [],
@@ -284,7 +374,7 @@ export const blogShowcaseChartConfig = {
   id: 'blog-showcase-chart',
   layout: 'chart',
   chartType: 'bar',
-  order: 8,
+  order: 9,
   title: '📊 Example: Instant dashboard — zero extra packages',
   description: 'This chart is rendered entirely by react-ubiquitous with a single section config. No Recharts, no Chart.js, no D3.',
   showGrid: true,
@@ -304,7 +394,7 @@ export const blogShowcaseChartConfig = {
 export const blogShowcaseTableConfig = {
   id: 'blog-showcase-table',
   layout: 'table',
-  order: 9,
+  order: 10,
   title: '📋 Example: Sortable, searchable table — zero extra packages',
   description: 'Sorting, search, pagination, and responsive layout — all from one config object. No AG Grid, no TanStack Table.',
   searchable: true,
@@ -330,7 +420,7 @@ export const blogShowcaseTableConfig = {
 export const blogAlertConfig = {
   id: 'blog-alert',
   layout: 'alert',
-  order: 10,
+  order: 11,
   title: '🎉 You\'re already seeing it in action',
   description:
     'This entire demo — dashboards, charts, forms, tables, navigation, and this blog — is rendered by react-ubiquitous from JSON configs. Not a single custom UI component was written.',
@@ -343,7 +433,7 @@ export const blogAlertConfig = {
 export const blogCtaHeroConfig = {
   id: 'blog-cta-hero',
   layout: 'hero',
-  order: 11,
+  order: 12,
   title: '🚀 Ready to break out of the loop?',
   subtitle: 'npm install react-ubiquitous',
   description: 'Build your backend. Define a config. Ship your product.',

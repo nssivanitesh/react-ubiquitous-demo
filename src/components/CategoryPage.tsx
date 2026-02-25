@@ -24,6 +24,19 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
   const [editText, setEditText] = useState(JSON.stringify(items[0].config, null, 2))
   const [error, setError] = useState<string | null>(null)
   const [panelTab, setPanelTab] = useState<PanelTab>('preview')
+  const [isPaneCollapsed, setIsPaneCollapsed] = useState(false)
+
+  const SIDE_PANE_LAYOUTS = new Set(['list-detail', 'tree-view', 'chat'])
+
+  function hasSidePane(config: object): boolean {
+    return SIDE_PANE_LAYOUTS.has((config as { layout?: string }).layout ?? '')
+  }
+
+  function applyPaneCollapse(config: object): object {
+    const layout = (config as { layout?: string }).layout
+    if (layout === 'tree-view') return { ...config, treeWidth: '0px' }
+    return { ...config, listWidth: '0px' } // list-detail & chat
+  }
 
   function handlePageChange(pageId: string) {
     const idx = items.findIndex(i => i.id === pageId)
@@ -31,6 +44,7 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
       setActiveIdx(idx)
       setEditText(JSON.stringify(configs[idx], null, 2))
       setError(null)
+      setIsPaneCollapsed(false)
     }
   }
 
@@ -53,12 +67,18 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
     id: `stage-${title.replace(/\s+/g, '-')}`,
     theme,
     pageTransition: transition,
-    pages: items.map((item, i) => ({
-      id: item.id,
-      title: item.label,
-      order: i,
-      sections: [configs[i] as UISectionConfig],
-    })),
+    pages: items.map((item, i) => {
+      const cfg = configs[i]
+      const displayCfg = i === activeIdx && isPaneCollapsed && hasSidePane(cfg)
+        ? applyPaneCollapse(cfg)
+        : cfg
+      return {
+        id: item.id,
+        title: item.label,
+        order: i,
+        sections: [displayCfg as UISectionConfig],
+      }
+    }),
   }
 
   const tabStyle = (active: boolean): React.CSSProperties => ({
@@ -81,13 +101,34 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
       </p>
 
       {/* Tab bar */}
-      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.sidebarBorder}`, marginBottom: '1.25rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', borderBottom: `1px solid ${colors.sidebarBorder}`, marginBottom: '1.25rem' }}>
         <button style={tabStyle(panelTab === 'preview')} onClick={() => setPanelTab('preview')}>
           🖼 Preview
         </button>
         <button style={tabStyle(panelTab === 'config')} onClick={() => setPanelTab('config')}>
           ⚙️ JSON Config {error ? '⚠' : ''}
         </button>
+        <div style={{ flex: 1 }} />
+        {panelTab === 'preview' && hasSidePane(configs[activeIdx]) && (
+          <button
+            onClick={() => setIsPaneCollapsed(c => !c)}
+            title={isPaneCollapsed ? 'Show side pane' : 'Hide side pane'}
+            style={{
+              padding: '0.28rem 0.75rem',
+              fontSize: '0.75rem',
+              borderRadius: '20px',
+              cursor: 'pointer',
+              border: `1px solid ${colors.sidebarBorder}`,
+              background: isPaneCollapsed ? colors.sidebarActive : 'transparent',
+              color: isPaneCollapsed ? '#ffffff' : colors.sidebarTextMuted,
+              fontWeight: isPaneCollapsed ? 600 : 400,
+              marginBottom: '4px',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {isPaneCollapsed ? '▶ Show Pane' : '◀ Hide Pane'}
+          </button>
+        )}
       </div>
 
       {/* Preview tab */}
