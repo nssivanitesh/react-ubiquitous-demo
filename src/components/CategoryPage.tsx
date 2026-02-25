@@ -15,12 +15,15 @@ interface CategoryPageProps {
   items: CategoryItem[]
 }
 
+type PanelTab = 'preview' | 'config'
+
 export function CategoryPage({ title, description, items }: CategoryPageProps) {
   const { theme, transition, colors } = useTheme()
   const [configs, setConfigs] = useState<object[]>(items.map(i => i.config))
   const [activeIdx, setActiveIdx] = useState(0)
   const [editText, setEditText] = useState(JSON.stringify(items[0].config, null, 2))
   const [error, setError] = useState<string | null>(null)
+  const [panelTab, setPanelTab] = useState<PanelTab>('preview')
 
   function handlePageChange(pageId: string) {
     const idx = items.findIndex(i => i.id === pageId)
@@ -58,17 +61,43 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
     })),
   }
 
+  const tabStyle = (active: boolean): React.CSSProperties => ({
+    padding: '0.45rem 1.1rem',
+    fontSize: '0.82rem',
+    fontWeight: active ? 600 : 400,
+    cursor: 'pointer',
+    border: 'none',
+    borderBottom: active ? `2px solid ${colors.sidebarActive}` : '2px solid transparent',
+    background: 'transparent',
+    color: active ? colors.sidebarActive : colors.sidebarTextMuted,
+  })
+
   return (
     <div>
       <h2 style={{ margin: '0 0 0.25rem', fontSize: '1.75rem', fontWeight: 700, color: colors.contentText }}>{title}</h2>
-      <p style={{ margin: '0 0 1.5rem', color: colors.sidebarTextMuted, fontSize: '0.9rem' }}>
+      <p style={{ margin: '0 0 1rem', color: colors.sidebarTextMuted, fontSize: '0.9rem' }}>
         {description}{' '}
         <span style={{ opacity: 0.7 }}>Switch tabs in the preview to see the <strong>{transition}</strong> transition from the library.</span>
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', alignItems: 'start' }}>
-        {/* Left: JSON editor */}
-        <div style={{ position: 'sticky', top: '68px' }}>
+      {/* Tab bar */}
+      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.sidebarBorder}`, marginBottom: '1.25rem' }}>
+        <button style={tabStyle(panelTab === 'preview')} onClick={() => setPanelTab('preview')}>
+          🖼 Preview
+        </button>
+        <button style={tabStyle(panelTab === 'config')} onClick={() => setPanelTab('config')}>
+          ⚙️ JSON Config {error ? '⚠' : ''}
+        </button>
+      </div>
+
+      {/* Preview tab */}
+      {panelTab === 'preview' && (
+        <UIStage config={stageConfig} onPageChange={handlePageChange} />
+      )}
+
+      {/* Config tab */}
+      {panelTab === 'config' && (
+        <div>
           <div style={{
             padding: '0.5rem 1rem',
             background: '#1e293b',
@@ -86,7 +115,7 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
             onChange={e => handleJsonChange(e.target.value)}
             style={{
               width: '100%',
-              height: '480px',
+              height: '520px',
               fontFamily: 'monospace',
               fontSize: '0.78rem',
               padding: '0.75rem',
@@ -106,12 +135,7 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
               </div>
           }
         </div>
-
-        {/* Right: UIStage preview */}
-        <div>
-          <UIStage config={stageConfig} onPageChange={handlePageChange} />
-        </div>
-      </div>
+      )}
     </div>
   )
 }
