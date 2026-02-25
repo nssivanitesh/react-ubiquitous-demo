@@ -80,3 +80,51 @@ export const listDetailConfig = {
   ],
   elements: [],
 }
+
+export const chatConfig = {
+  id: 'chat-section',
+  layout: 'chat',
+  listTitle: 'Messages',
+  listWidth: '280px',
+  inputPlaceholder: 'Type a message…',
+  sendButtonText: 'Send',
+  currentUserName: 'You',
+  conversations: [
+    {
+      id: 'conv-1',
+      label: 'Alice Johnson',
+      sublabel: 'Sounds good, see you then!',
+      avatar: 'AJ',
+      badge: '2',
+      messages: [
+        { id: 'm1', sender: 'Alice Johnson', role: 'other', text: 'Hey! Are you free for a call tomorrow?', timestamp: '2026-02-25T09:00:00Z', avatar: 'AJ' },
+        { id: 'm2', sender: 'You', role: 'me', text: 'Yes, works for me. What time?', timestamp: '2026-02-25T09:02:00Z' },
+        { id: 'm3', sender: 'Alice Johnson', role: 'other', text: 'How about 10am?', timestamp: '2026-02-25T09:03:00Z', avatar: 'AJ' },
+        { id: 'm4', sender: 'You', role: 'me', text: 'Perfect, I\'ll send a calendar invite.', timestamp: '2026-02-25T09:04:00Z' },
+        { id: 'm5', sender: 'Alice Johnson', role: 'other', text: 'Sounds good, see you then!', timestamp: '2026-02-25T09:05:00Z', avatar: 'AJ' },
+      ],
+    },
+    {
+      id: 'conv-2',
+      label: 'Bob Smith',
+      sublabel: 'I\'ll review it this afternoon.',
+      avatar: 'BS',
+      messages: [
+        { id: 'm1', sender: 'You', role: 'me', text: 'Hi Bob, I\'ve pushed the latest changes to the repo.', timestamp: '2026-02-25T10:15:00Z' },
+        { id: 'm2', sender: 'Bob Smith', role: 'other', text: 'Nice, I\'ll review it this afternoon.', timestamp: '2026-02-25T10:20:00Z', avatar: 'BS' },
+      ],
+    },
+    {
+      id: 'conv-3',
+      label: 'Design Team',
+      sublabel: 'New mockups are ready for review.',
+      avatar: 'DT',
+      badge: '5',
+      messages: [
+        { id: 'm1', sender: 'Carol White', role: 'other', text: 'New mockups are ready for review in Figma.', timestamp: '2026-02-25T11:00:00Z', avatar: 'CW' },
+        { id: 'm2', sender: 'You', role: 'me', text: 'Great, I\'ll take a look shortly.', timestamp: '2026-02-25T11:05:00Z' },
+      ],
+    },
+  ],
+  elements: [],
+}

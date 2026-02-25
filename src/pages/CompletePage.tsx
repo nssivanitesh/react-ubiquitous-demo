@@ -3,7 +3,7 @@ import type { UIStageConfig, UISectionConfig } from 'react-ubiquitous'
 import { useTheme } from '../contexts/ThemeContext'
 import { barChartConfig, lineChartConfig, donutChartConfig, areaChartConfig } from '../data/charts'
 import { statConfig, tableConfig, timelineConfig, mediaConfig, cardConfig } from '../data/dataDisplay'
-import { listDetailConfig, heroConfig } from '../data/layout'
+import { listDetailConfig, heroConfig, chatConfig } from '../data/layout'
 import { tabsConfig, stepperConfig } from '../data/navigation'
 import { accordionConfig } from '../data/disclosure'
 import { alertSuccessConfig, progressConfig } from '../data/feedback'
@@ -68,6 +68,7 @@ export default function CompletePage() {
         sections: [
           listDetailConfig as UISectionConfig,
           { ...tableConfig, order: 1 } as UISectionConfig,
+          { ...chatConfig, order: 2 } as UISectionConfig,
         ],
       },
       {
