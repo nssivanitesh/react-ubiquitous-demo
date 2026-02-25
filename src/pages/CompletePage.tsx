@@ -31,53 +31,9 @@ export default function CompletePage() {
     pageTransition: transition,
     pages: [
       {
-        id: 'dashboard',
-        title: '📊 Dashboard',
+        id: 'home',
+        title: '🏠 Home',
         order: 0,
-        sections: [
-          statConfig as UISectionConfig,
-          { ...barChartConfig, order: 1 } as UISectionConfig,
-          { ...lineChartConfig, order: 2 } as UISectionConfig,
-          { ...donutChartConfig, order: 3 } as UISectionConfig,
-          { ...areaChartConfig, order: 4 } as UISectionConfig,
-        ],
-      },
-      {
-        id: 'contacts',
-        title: '👥 Contacts',
-        order: 1,
-        sections: [
-          listDetailConfig as UISectionConfig,
-          { ...tableConfig, order: 1 } as UISectionConfig,
-        ],
-      },
-      {
-        id: 'gallery',
-        title: '🎨 Gallery',
-        order: 2,
-        sections: [
-          heroConfig as UISectionConfig,
-          { ...mediaConfig, order: 1 } as UISectionConfig,
-          { ...timelineConfig, order: 2 } as UISectionConfig,
-          { ...cardConfig, order: 3 } as UISectionConfig,
-        ],
-      },
-      {
-        id: 'settings',
-        title: '⚙️ Settings',
-        order: 3,
-        sections: [
-          stepperConfig as UISectionConfig,
-          { ...tabsConfig, order: 1 } as UISectionConfig,
-          { ...accordionConfig, order: 2 } as UISectionConfig,
-          { ...progressConfig, order: 3 } as UISectionConfig,
-          { ...alertSuccessConfig, order: 4 } as UISectionConfig,
-        ],
-      },
-      {
-        id: 'blog',
-        title: '📝 Blog',
-        order: 4,
         sections: [
           blogHeroConfig as UISectionConfig,
           blogPainPointsConfig as UISectionConfig,
@@ -91,6 +47,50 @@ export default function CompletePage() {
           blogShowcaseTableConfig as UISectionConfig,
           blogAlertConfig as UISectionConfig,
           blogCtaHeroConfig as UISectionConfig,
+        ],
+      },
+      {
+        id: 'dashboard',
+        title: '📊 Dashboard',
+        order: 1,
+        sections: [
+          statConfig as UISectionConfig,
+          { ...barChartConfig, order: 1 } as UISectionConfig,
+          { ...lineChartConfig, order: 2 } as UISectionConfig,
+          { ...donutChartConfig, order: 3 } as UISectionConfig,
+          { ...areaChartConfig, order: 4 } as UISectionConfig,
+        ],
+      },
+      {
+        id: 'contacts',
+        title: '👥 Contacts',
+        order: 2,
+        sections: [
+          listDetailConfig as UISectionConfig,
+          { ...tableConfig, order: 1 } as UISectionConfig,
+        ],
+      },
+      {
+        id: 'gallery',
+        title: '🎨 Gallery',
+        order: 3,
+        sections: [
+          heroConfig as UISectionConfig,
+          { ...mediaConfig, order: 1 } as UISectionConfig,
+          { ...timelineConfig, order: 2 } as UISectionConfig,
+          { ...cardConfig, order: 3 } as UISectionConfig,
+        ],
+      },
+      {
+        id: 'settings',
+        title: '⚙️ Settings',
+        order: 4,
+        sections: [
+          stepperConfig as UISectionConfig,
+          { ...tabsConfig, order: 1 } as UISectionConfig,
+          { ...accordionConfig, order: 2 } as UISectionConfig,
+          { ...progressConfig, order: 3 } as UISectionConfig,
+          { ...alertSuccessConfig, order: 4 } as UISectionConfig,
         ],
       },
     ],
