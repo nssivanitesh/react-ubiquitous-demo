@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import BlogPage from './pages/BlogPage'
 import ChartsPage from './pages/ChartsPage'
 import LayoutPage from './pages/LayoutPage'
 import NavigationPage from './pages/NavigationPage'
@@ -14,6 +15,7 @@ import { TopBar, type AppMode } from './components/TopBar'
 declare const __RU_VERSION__: string
 
 const PAGES = [
+  { id: 'home', label: '🏠 Home', component: BlogPage },
   { id: 'charts', label: '📊 Charts', component: ChartsPage },
   { id: 'layout', label: '🏗️ Layout', component: LayoutPage },
   { id: 'navigation', label: '🧭 Navigation', component: NavigationPage },
@@ -25,10 +27,10 @@ const PAGES = [
 ]
 
 function AppShell() {
-  const [activePage, setActivePage] = useState('charts')
+  const [activePage, setActivePage] = useState('home')
   const [mode, setMode] = useState<AppMode>('complete')
   const { colors } = useTheme()
-  const ActiveComponent = PAGES.find(p => p.id === activePage)?.component || ChartsPage
+  const ActiveComponent = PAGES.find(p => p.id === activePage)?.component || BlogPage
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
