@@ -34,6 +34,7 @@ export default function CompletePage() {
       {
         id: 'blog',
         title: '📝 Blog',
+        description: '🟢 Active — static content display',
         order: 0,
         sections: [
           blogHeroConfig as UISectionConfig,
@@ -54,6 +55,7 @@ export default function CompletePage() {
       {
         id: 'dashboard',
         title: '📊 Dashboard',
+        description: '🟢 Active — charts & stats display',
         order: 1,
         sections: [
           statConfig as UISectionConfig,
@@ -66,6 +68,7 @@ export default function CompletePage() {
       {
         id: 'contacts',
         title: '👥 Contacts',
+        description: '🚧 WIP — list-detail & chat (user input / network)',
         order: 2,
         sections: [
           listDetailConfig as UISectionConfig,
@@ -77,6 +80,7 @@ export default function CompletePage() {
       {
         id: 'gallery',
         title: '🎨 Gallery',
+        description: '🟢 Active — media & display components',
         order: 3,
         sections: [
           heroConfig as UISectionConfig,
@@ -88,6 +92,7 @@ export default function CompletePage() {
       {
         id: 'settings',
         title: '⚙️ Settings',
+        description: '🚧 WIP — stepper, tabs & form inputs',
         order: 4,
         sections: [
           stepperConfig as UISectionConfig,
