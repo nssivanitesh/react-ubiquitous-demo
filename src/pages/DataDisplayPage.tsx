@@ -7,17 +7,17 @@ export default function DataDisplayPage() {
       title="📋 Data Display"
       description="Components for presenting structured data and content."
       items={[
-        { id: 'card', label: 'Card', config: cardConfig },
-        { id: 'table', label: 'Table', config: tableConfig },
-        { id: 'badge', label: 'Badge', config: badgeConfig },
-        { id: 'avatar', label: 'Avatar', config: avatarConfig },
-        { id: 'timeline', label: 'Timeline', config: timelineConfig },
-        { id: 'stat', label: 'Stat', config: statConfig },
-        { id: 'empty-state', label: 'Empty State', config: emptyStateConfig },
-        { id: 'code-block', label: 'Code Block', config: codeBlockConfig },
-        { id: 'iframe', label: 'iFrame', config: iframeConfig },
-        { id: 'media', label: 'Media', config: mediaConfig },
-        { id: 'divider', label: 'Divider', config: dividerConfig },
+        { id: 'card',        label: 'Card',        config: cardConfig,        status: 'active' },
+        { id: 'table',       label: 'Table',       config: tableConfig,       status: 'wip'    },
+        { id: 'badge',       label: 'Badge',       config: badgeConfig,       status: 'active' },
+        { id: 'avatar',      label: 'Avatar',      config: avatarConfig,      status: 'active' },
+        { id: 'timeline',    label: 'Timeline',    config: timelineConfig,    status: 'active' },
+        { id: 'stat',        label: 'Stat',        config: statConfig,        status: 'active' },
+        { id: 'empty-state', label: 'Empty State', config: emptyStateConfig,  status: 'active' },
+        { id: 'code-block',  label: 'Code Block',  config: codeBlockConfig,   status: 'active' },
+        { id: 'iframe',      label: 'iFrame',      config: iframeConfig,      status: 'active' },
+        { id: 'media',       label: 'Media',       config: mediaConfig,       status: 'active' },
+        { id: 'divider',     label: 'Divider',     config: dividerConfig,     status: 'active' },
       ]}
     />
   )

@@ -7,8 +7,8 @@ export default function DisclosurePage() {
       title="📂 Disclosure"
       description="Expand/collapse components for progressive content reveal."
       items={[
-        { id: 'accordion', label: 'Accordion', config: accordionConfig },
-        { id: 'collapse', label: 'Collapse', config: collapseConfig },
+        { id: 'accordion', label: 'Accordion', config: accordionConfig, status: 'active' },
+        { id: 'collapse',  label: 'Collapse',  config: collapseConfig,  status: 'wip'    },
       ]}
     />
   )

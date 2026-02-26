@@ -53,11 +53,22 @@ export const listDetailConfig = {
   listTitle: 'All Contacts',
   listWidth: '260px',
   pageSize: 10,
+  /** Feature 3 (1.0.13): virtualScrolling — use react-window for large lists */
+  virtualScrolling: true,
+  virtualListHeight: 300,
   listItems: [
-    { id: '1', label: 'Alice Johnson', sublabel: 'Engineering', avatar: 'AJ', badge: 'Active' },
-    { id: '2', label: 'Bob Smith', sublabel: 'Marketing', avatar: 'BS', badge: 'Away' },
-    { id: '3', label: 'Carol White', sublabel: 'Design', avatar: 'CW', badge: 'Active' },
-    { id: '4', label: 'David Lee', sublabel: 'Sales', avatar: 'DL', badge: 'Offline' },
+    { id: '1',  label: 'Alice Johnson',   sublabel: 'Engineering', avatar: 'AJ', badge: 'Active'  },
+    { id: '2',  label: 'Bob Smith',       sublabel: 'Marketing',   avatar: 'BS', badge: 'Away'    },
+    { id: '3',  label: 'Carol White',     sublabel: 'Design',      avatar: 'CW', badge: 'Active'  },
+    { id: '4',  label: 'David Lee',       sublabel: 'Sales',       avatar: 'DL', badge: 'Offline' },
+    { id: '5',  label: 'Eve Davis',       sublabel: 'Engineering', avatar: 'ED', badge: 'Active'  },
+    { id: '6',  label: 'Frank Brown',     sublabel: 'HR',          avatar: 'FB', badge: 'Active'  },
+    { id: '7',  label: 'Grace Kim',       sublabel: 'Design',      avatar: 'GK', badge: 'Away'    },
+    { id: '8',  label: 'Henry Wilson',    sublabel: 'Sales',       avatar: 'HW', badge: 'Active'  },
+    { id: '9',  label: 'Iris Chen',       sublabel: 'Engineering', avatar: 'IC', badge: 'Active'  },
+    { id: '10', label: 'Jake Martinez',   sublabel: 'Marketing',   avatar: 'JM', badge: 'Offline' },
+    { id: '11', label: 'Karen Taylor',    sublabel: 'HR',          avatar: 'KT', badge: 'Active'  },
+    { id: '12', label: 'Liam Anderson',   sublabel: 'Engineering', avatar: 'LA', badge: 'Active'  },
   ],
   detailPages: [
     {

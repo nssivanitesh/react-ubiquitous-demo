@@ -1,23 +1,43 @@
-import { useState } from 'react'
-import { UIStage } from 'react-ubiquitous'
-import type { UIStageConfig, UISectionConfig } from 'react-ubiquitous'
+import { useState, useCallback, type ComponentType } from 'react'
+import { UIStage, SectionErrorBoundary } from 'react-ubiquitous'
+import type { UIStageConfig, UISectionConfig, I18nMessages, UIElementProps } from 'react-ubiquitous'
 import { useTheme } from '../contexts/ThemeContext'
+
+export type ComponentStatus = 'active' | 'wip'
 
 export interface CategoryItem {
   id: string
   label: string
   config: object
+  /** Whether this component is purely static (active) or requires user input / network (wip). */
+  status?: ComponentStatus
 }
 
 interface CategoryPageProps {
   title: string
   description: string
   items: CategoryItem[]
+  /** Feature 5 (1.0.13): persist form values to localStorage. */
+  localStorageKey?: string
+  /** Feature 6 (1.0.13): custom i18n validation messages. */
+  i18n?: I18nMessages
+  /** Feature 9 (1.0.13): debounced auto-save callback. */
+  onAutoSave?: (values: Record<string, unknown>) => void
+  /** Feature 4 (1.0.13): custom element renderers keyed by component name. */
+  customComponents?: Record<string, ComponentType<UIElementProps>>
 }
 
 type PanelTab = 'preview' | 'config'
 
-export function CategoryPage({ title, description, items }: CategoryPageProps) {
+export function CategoryPage({
+  title,
+  description,
+  items,
+  localStorageKey,
+  i18n,
+  onAutoSave,
+  customComponents,
+}: CategoryPageProps) {
   const { theme, transition, colors } = useTheme()
   const [configs, setConfigs] = useState<object[]>(items.map(i => i.config))
   const [activeIdx, setActiveIdx] = useState(0)
@@ -25,6 +45,16 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
   const [error, setError] = useState<string | null>(null)
   const [panelTab, setPanelTab] = useState<PanelTab>('preview')
   const [isPaneCollapsed, setIsPaneCollapsed] = useState(false)
+  /** Feature 7 (1.0.13): readOnly toggle — forces every element into disabled/read-only mode. */
+  const [readOnly, setReadOnly] = useState(false)
+  /**
+   * Feature 1 & 2 (1.0.13): formValues — passed to UIStage so hiddenExpr/disabledExpr
+   * can evaluate against sibling field values in real time.
+   */
+  const [formValues, setFormValues] = useState<Record<string, unknown>>({})
+  const handleChange = useCallback((name: string, value: unknown) => {
+    setFormValues(prev => ({ ...prev, [name]: value }))
+  }, [])
 
   const SIDE_PANE_LAYOUTS = new Set(['list-detail', 'tree-view', 'chat'])
 
@@ -45,6 +75,7 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
       setEditText(JSON.stringify(configs[idx], null, 2))
       setError(null)
       setIsPaneCollapsed(false)
+      setFormValues({})
     }
   }
 
@@ -72,9 +103,13 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
       const displayCfg = i === activeIdx && isPaneCollapsed && hasSidePane(cfg)
         ? applyPaneCollapse(cfg)
         : cfg
+      const itemStatus = item.status
       return {
         id: item.id,
         title: item.label,
+        description: itemStatus
+          ? itemStatus === 'active' ? '🟢 Active — static display' : '🚧 WIP — user input / network'
+          : undefined,
         order: i,
         sections: [displayCfg as UISectionConfig],
       }
@@ -109,6 +144,28 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
           ⚙️ JSON Config {error ? '⚠' : ''}
         </button>
         <div style={{ flex: 1 }} />
+
+        {/* Feature 7 (1.0.13): readOnly toggle */}
+        <button
+          onClick={() => setReadOnly(r => !r)}
+          title={readOnly ? 'Switch to edit mode' : 'Switch to read-only mode'}
+          style={{
+            padding: '0.28rem 0.75rem',
+            fontSize: '0.75rem',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            border: `1px solid ${colors.sidebarBorder}`,
+            background: readOnly ? '#0ea5e9' : 'transparent',
+            color: readOnly ? '#ffffff' : colors.sidebarTextMuted,
+            fontWeight: readOnly ? 600 : 400,
+            marginBottom: '4px',
+            marginRight: '0.5rem',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {readOnly ? '🔒 Read-Only' : '✏️ Editable'}
+        </button>
+
         {panelTab === 'preview' && hasSidePane(configs[activeIdx]) && (
           <button
             onClick={() => setIsPaneCollapsed(c => !c)}
@@ -131,9 +188,21 @@ export function CategoryPage({ title, description, items }: CategoryPageProps) {
         )}
       </div>
 
-      {/* Preview tab */}
+      {/* Preview tab — wrapped in SectionErrorBoundary (Feature 9 / 1.0.13) */}
       {panelTab === 'preview' && (
-        <UIStage config={stageConfig} onPageChange={handlePageChange} />
+        <SectionErrorBoundary>
+          <UIStage
+            config={stageConfig}
+            onPageChange={handlePageChange}
+            onChange={handleChange}
+            formValues={formValues}
+            readOnly={readOnly}
+            localStorageKey={localStorageKey}
+            i18n={i18n}
+            onAutoSave={onAutoSave}
+            customComponents={customComponents}
+          />
+        </SectionErrorBoundary>
       )}
 
       {/* Config tab */}

@@ -301,3 +301,63 @@ export const phoneinputConfig = {
     { id: 'ph2', name: 'mobile', type: 'phoneinput', label: 'Mobile (UK)', defaultCountry: 'GB', placeholder: '07xxx xxxxxx', order: 1 },
   ],
 }
+
+/**
+ * Feature 1 (1.0.13): `hiddenExpr` — conditional visibility based on sibling field values.
+ * The "Promo Code" input is only shown when the user ticks "I have a promo code".
+ */
+export const hiddenExprConfig = {
+  id: 'hiddenexpr-section',
+  layout: 'flex',
+  title: '✨ hiddenExpr — Dynamic Show/Hide (new in 1.0.13)',
+  description: 'Tick "I have a promo code" to reveal the promo code input. The field uses hiddenExpr: "{hasPromo} !== true" to hide itself dynamically.',
+  flexDirection: 'column',
+  gap: '1rem',
+  elements: [
+    { id: 'he1', name: 'orderAmount', type: 'input', inputType: 'number', label: 'Order Amount ($)', defaultValue: 100, min: 1, order: 0 },
+    { id: 'he2', name: 'hasPromo', type: 'checkbox', label: 'I have a promo code', defaultChecked: false, order: 1 },
+    { id: 'he3', name: 'promoCode', type: 'input', inputType: 'text', label: 'Promo Code', placeholder: 'SAVE20', hiddenExpr: '{hasPromo} !== true', order: 2 },
+    { id: 'he4', name: 'submitOrder', type: 'button', text: 'Place Order', variant: 'default', order: 3 },
+  ],
+}
+
+/**
+ * Feature 2 (1.0.13): `disabledExpr` — conditional disable based on sibling field values.
+ * "Submit" is disabled until the user agrees to the terms; the comment field is disabled
+ * when the "private" checkbox is checked.
+ */
+export const disabledExprConfig = {
+  id: 'disabledexpr-section',
+  layout: 'flex',
+  title: '🔒 disabledExpr — Conditional Enable/Disable (new in 1.0.13)',
+  description: 'The Submit button is disabled until "I agree to the terms" is ticked. The comment textarea disables when "Private — no comments" is checked.',
+  flexDirection: 'column',
+  gap: '1rem',
+  elements: [
+    { id: 'de1', name: 'reviewTitle', type: 'input', inputType: 'text', label: 'Review Title', placeholder: 'Summarise your review', order: 0 },
+    { id: 'de2', name: 'isPrivate', type: 'checkbox', label: 'Private — no public comments', defaultChecked: false, order: 1 },
+    { id: 'de3', name: 'reviewComment', type: 'textarea', label: 'Comment', placeholder: 'Share your thoughts…', rows: 3, disabledExpr: '{isPrivate} === true', order: 2 },
+    { id: 'de4', name: 'termsAccepted', type: 'checkbox', label: 'I agree to the terms and conditions', defaultChecked: false, order: 3 },
+    { id: 'de5', name: 'submitReview', type: 'button', text: 'Submit Review', variant: 'default', disabledExpr: '{termsAccepted} !== true', order: 4 },
+  ],
+}
+
+/**
+ * Feature 4 (1.0.13): `CustomElementConfig` — render a consumer-supplied React component.
+ * The custom component key 'color-swatch' is registered in main.tsx via customComponents prop.
+ */
+export const customElementConfig = {
+  id: 'customelement-section',
+  layout: 'flex',
+  title: '🧩 CustomElementConfig — Custom React Component (new in 1.0.13)',
+  description: 'The colored swatches below are rendered by a custom React component registered via the customComponents prop on UIStage. Use type: "custom" and a component key to inject any widget.',
+  flexDirection: 'column',
+  gap: '1rem',
+  elements: [
+    { id: 'ce0', name: 'swatchLabel', type: 'label', text: 'Brand color palette — rendered by a custom "color-swatch" component:', order: 0 },
+    { id: 'ce1', name: 'primarySwatch',  type: 'custom', component: 'color-swatch', props: { color: '#6366f1', label: 'Primary'  }, order: 1 },
+    { id: 'ce2', name: 'successSwatch',  type: 'custom', component: 'color-swatch', props: { color: '#16a34a', label: 'Success'  }, order: 2 },
+    { id: 'ce3', name: 'warningSwatch',  type: 'custom', component: 'color-swatch', props: { color: '#d97706', label: 'Warning'  }, order: 3 },
+    { id: 'ce4', name: 'dangerSwatch',   type: 'custom', component: 'color-swatch', props: { color: '#dc2626', label: 'Danger'   }, order: 4 },
+  ],
+}

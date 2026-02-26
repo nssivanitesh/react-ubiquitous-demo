@@ -7,12 +7,12 @@ export default function FeedbackPage() {
       title="💬 Feedback"
       description="Components that communicate status or loading state to users."
       items={[
-        { id: 'alert-info', label: 'Alert (Info)', config: alertConfig },
-        { id: 'alert-success', label: 'Alert (Success)', config: alertSuccessConfig },
-        { id: 'progress', label: 'Progress (Linear)', config: progressConfig },
-        { id: 'progress-circular', label: 'Progress (Circular)', config: progressCircularConfig },
-        { id: 'skeleton', label: 'Skeleton', config: skeletonConfig },
-        { id: 'toast', label: 'Toast', config: toastConfig },
+        { id: 'alert-info',         label: 'Alert (Info)',          config: alertConfig,           status: 'active' },
+        { id: 'alert-success',      label: 'Alert (Success)',       config: alertSuccessConfig,    status: 'active' },
+        { id: 'progress',           label: 'Progress (Linear)',     config: progressConfig,        status: 'active' },
+        { id: 'progress-circular',  label: 'Progress (Circular)',   config: progressCircularConfig, status: 'active' },
+        { id: 'skeleton',           label: 'Skeleton',              config: skeletonConfig,        status: 'active' },
+        { id: 'toast',              label: 'Toast',                 config: toastConfig,           status: 'active' },
       ]}
     />
   )

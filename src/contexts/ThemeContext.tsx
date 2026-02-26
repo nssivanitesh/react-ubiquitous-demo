@@ -3,6 +3,10 @@ import type { UITheme, UIPageTransition } from 'react-ubiquitous'
 
 export type { UITheme, UIPageTransition }
 
+/**
+ * Shell color tokens — mapped to CSS variables from react-ubiquitous/theme.css
+ * so the app shell automatically follows the active theme (light / dark / custom).
+ */
 export interface ThemeColors {
   sidebar: string
   sidebarBorder: string
@@ -15,51 +19,17 @@ export interface ThemeColors {
   contentText: string
 }
 
-export const THEME_COLORS: Record<UITheme, ThemeColors> = {
-  html: {
-    sidebar: '#1e293b',
-    sidebarBorder: '#334155',
-    sidebarText: '#f1f5f9',
-    sidebarTextMuted: '#94a3b8',
-    sidebarActive: '#6366f1',
-    topbar: '#0f172a',
-    topbarBorder: '#1e293b',
-    content: '#f8fafc',
-    contentText: '#0f172a',
-  },
-  light: {
-    sidebar: '#f1f5f9',
-    sidebarBorder: '#e2e8f0',
-    sidebarText: '#1e293b',
-    sidebarTextMuted: '#64748b',
-    sidebarActive: '#6366f1',
-    topbar: '#ffffff',
-    topbarBorder: '#e2e8f0',
-    content: '#f8fafc',
-    contentText: '#0f172a',
-  },
-  dark: {
-    sidebar: '#111827',
-    sidebarBorder: '#1f2937',
-    sidebarText: '#f9fafb',
-    sidebarTextMuted: '#9ca3af',
-    sidebarActive: '#6366f1',
-    topbar: '#030712',
-    topbarBorder: '#111827',
-    content: '#1f2937',
-    contentText: '#f9fafb',
-  },
-  custom: {
-    sidebar: '#1a0a2e',
-    sidebarBorder: '#3b1f5e',
-    sidebarText: '#f0e6ff',
-    sidebarTextMuted: '#c4b5fd',
-    sidebarActive: '#a855f7',
-    topbar: '#0d0520',
-    topbarBorder: '#3b1f5e',
-    content: '#faf5ff',
-    contentText: '#1a0a2e',
-  },
+/** CSS-variable-based theme tokens — react-ubiquitous/theme.css provides these. */
+export const CSS_VAR_COLORS: ThemeColors = {
+  sidebar:          'var(--sidebar)',
+  sidebarBorder:    'var(--sidebar-border)',
+  sidebarText:      'var(--sidebar-foreground)',
+  sidebarTextMuted: 'var(--muted-foreground)',
+  sidebarActive:    'var(--sidebar-primary)',
+  topbar:           'var(--card)',
+  topbarBorder:     'var(--border)',
+  content:          'var(--background)',
+  contentText:      'var(--foreground)',
 }
 
 interface ThemeContextValue {
@@ -75,7 +45,7 @@ const ThemeContext = createContext<ThemeContextValue>({
   setTheme: () => {},
   transition: 'fade',
   setTransition: () => {},
-  colors: THEME_COLORS.html,
+  colors: CSS_VAR_COLORS,
 })
 
 function applyThemeToHtml(next: UITheme) {
@@ -98,7 +68,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, transition, setTransition, colors: THEME_COLORS[theme] }}>
+    <ThemeContext.Provider value={{ theme, setTheme, transition, setTransition, colors: CSS_VAR_COLORS }}>
       {children}
     </ThemeContext.Provider>
   )

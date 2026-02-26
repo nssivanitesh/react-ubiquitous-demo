@@ -7,13 +7,13 @@ export default function ChartsPage() {
       title="📊 Charts"
       description="SVG-based charts via layout: 'chart'."
       items={[
-        { id: 'bar', label: 'Bar', config: barChartConfig },
-        { id: 'line', label: 'Line', config: lineChartConfig },
-        { id: 'area', label: 'Area', config: areaChartConfig },
-        { id: 'pie', label: 'Pie', config: pieChartConfig },
-        { id: 'donut', label: 'Donut', config: donutChartConfig },
-        { id: 'radar', label: 'Radar', config: radarChartConfig },
-        { id: 'scatter', label: 'Scatter', config: scatterChartConfig },
+        { id: 'bar',     label: 'Bar',     config: barChartConfig,     status: 'active' },
+        { id: 'line',    label: 'Line',    config: lineChartConfig,    status: 'active' },
+        { id: 'area',    label: 'Area',    config: areaChartConfig,    status: 'active' },
+        { id: 'pie',     label: 'Pie',     config: pieChartConfig,     status: 'active' },
+        { id: 'donut',   label: 'Donut',   config: donutChartConfig,   status: 'active' },
+        { id: 'radar',   label: 'Radar',   config: radarChartConfig,   status: 'active' },
+        { id: 'scatter', label: 'Scatter', config: scatterChartConfig, status: 'active' },
       ]}
     />
   )
