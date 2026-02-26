@@ -68,7 +68,7 @@ export default function CompletePage() {
       {
         id: 'contacts',
         title: '👥 Contacts',
-        description: '🚧 WIP — list-detail & chat (user input / network)',
+        description: '🟢 Active — list-detail, chat & tree-view',
         order: 2,
         sections: [
           listDetailConfig as UISectionConfig,
@@ -92,7 +92,7 @@ export default function CompletePage() {
       {
         id: 'settings',
         title: '⚙️ Settings',
-        description: '🚧 WIP — stepper, tabs & form inputs',
+        description: '🟢 Active — stepper, tabs & form inputs',
         order: 4,
         sections: [
           stepperConfig as UISectionConfig,
