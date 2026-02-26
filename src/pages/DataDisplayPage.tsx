@@ -8,7 +8,7 @@ export default function DataDisplayPage() {
       description="Components for presenting structured data and content."
       items={[
         { id: 'card',        label: 'Card',        config: cardConfig,        status: 'active' },
-        { id: 'table',       label: 'Table',       config: tableConfig,       status: 'wip'    },
+        { id: 'table',       label: 'Table',       config: tableConfig,       status: 'active' },
         { id: 'badge',       label: 'Badge',       config: badgeConfig,       status: 'active' },
         { id: 'avatar',      label: 'Avatar',      config: avatarConfig,      status: 'active' },
         { id: 'timeline',    label: 'Timeline',    config: timelineConfig,    status: 'active' },

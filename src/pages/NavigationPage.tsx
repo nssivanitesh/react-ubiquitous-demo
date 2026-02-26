@@ -11,8 +11,8 @@ export default function NavigationPage() {
         { id: 'sidebar',     label: 'Sidebar',     config: sidebarConfig,     status: 'active' },
         { id: 'breadcrumbs', label: 'Breadcrumbs', config: breadcrumbsConfig, status: 'active' },
         { id: 'pagination',  label: 'Pagination',  config: paginationConfig,  status: 'active' },
-        { id: 'stepper',     label: 'Stepper',     config: stepperConfig,     status: 'wip'    },
-        { id: 'tabs',        label: 'Tabs',        config: tabsConfig,        status: 'wip'    },
+        { id: 'stepper',     label: 'Stepper',     config: stepperConfig,     status: 'active' },
+        { id: 'tabs',        label: 'Tabs',        config: tabsConfig,        status: 'active' },
       ]}
     />
   )

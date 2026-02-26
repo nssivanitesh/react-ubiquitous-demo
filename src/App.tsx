@@ -20,13 +20,13 @@ type ComponentStatus = 'active' | 'wip'
 const PAGES = [
   { id: 'home',         label: '🏠 Home',         component: BlogPage,        status: 'active' as ComponentStatus },
   { id: 'charts',       label: '📊 Charts',       component: ChartsPage,      status: 'active' as ComponentStatus },
-  { id: 'layout',       label: '🏗️ Layout',       component: LayoutPage,      status: 'wip'    as ComponentStatus },
-  { id: 'navigation',   label: '🧭 Navigation',   component: NavigationPage,  status: 'wip'    as ComponentStatus },
+  { id: 'layout',       label: '🏗️ Layout',       component: LayoutPage,      status: 'active' as ComponentStatus },
+  { id: 'navigation',   label: '🧭 Navigation',   component: NavigationPage,  status: 'active' as ComponentStatus },
   { id: 'feedback',     label: '💬 Feedback',     component: FeedbackPage,    status: 'active' as ComponentStatus },
-  { id: 'overlays',     label: '🪟 Overlays',     component: OverlaysPage,    status: 'wip'    as ComponentStatus },
+  { id: 'overlays',     label: '🪟 Overlays',     component: OverlaysPage,    status: 'active' as ComponentStatus },
   { id: 'disclosure',   label: '📂 Disclosure',   component: DisclosurePage,  status: 'active' as ComponentStatus },
   { id: 'data-display', label: '📋 Data Display', component: DataDisplayPage, status: 'active' as ComponentStatus },
-  { id: 'fields',       label: '📝 Fields',       component: FieldsPage,      status: 'wip'    as ComponentStatus },
+  { id: 'fields',       label: '📝 Fields',       component: FieldsPage,      status: 'active' as ComponentStatus },
 ]
 
 function StatusBadge({ status }: { status: ComponentStatus }) {
@@ -82,6 +82,7 @@ function AppShell() {
             overflowY: 'auto',
           }}>
             <div style={{ padding: '0 1.5rem 1.5rem', borderBottom: `1px solid ${colors.sidebarBorder}` }}>
+              <img src="/react-ubiquitous.png" alt="react-ubiquitous logo" style={{ width: '100%', maxWidth: '160px', marginBottom: '0.5rem', display: 'block' }} />
               <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: colors.sidebarText }}>react-ubiquitous</h1>
               <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: colors.sidebarTextMuted }}>Component Demo v{__RU_VERSION__}</p>
             </div>
