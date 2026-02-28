@@ -10,40 +10,12 @@ This is a **demo site** for the [react-ubiquitous](https://www.npmjs.com/package
 
 ```
 react-ubiquitous-demo/
-├── src/                        # Demo site source (React + TypeScript + Vite)
-│   ├── components/             # Shared UI components (CategoryPage, TopBar, etc.)
-│   ├── contexts/               # React context (ThemeContext)
-│   ├── data/                   # Per-category JSON config objects (fields, feedback, etc.)
-│   ├── pages/                  # Per-category page components
-│   └── utils/                  # Utilities (codeGen.ts — dynamic builder code generation)
-│
-├── nuget/                      # 📦 git subtree → https://github.com/nssivanitesh/react-ubiquitous-nuget
-│   └── src/ReactUbiquitous.NuGet/
-│       └── Builders/           # StageBuilder.cs, PageBuilder.cs, SectionBuilder.cs, ElementBuilder.cs
-│
-├── py/                         # 🐍 git subtree → https://github.com/nssivanitesh/react-ubiquitous-py
-│   └── src/react_ubiquitous_put/
-│       └── builders.py         # SectionBuilder, ElementBuilder (fluent/immutable pattern)
-│
-└── composer/                   # 🐘 git subtree → https://github.com/nssivanitesh/react-ubiquitous-composer
-    └── src/
-        ├── Builders/           # StageBuilder.php, PageBuilder.php, ValidationBuilder.php
-        └── DTOs/               # Sections/, Elements/ — named-arg constructor DTOs
-```
-
-### Subtree Remotes
-
-| Folder | Remote | Branch | Purpose |
-|--------|--------|---------|---------|
-| `nuget/` | `https://github.com/nssivanitesh/react-ubiquitous-nuget` | `main` | .NET NuGet — C# fluent builder classes |
-| `py/` | `https://github.com/nssivanitesh/react-ubiquitous-py` | `main` | Python PyPI — immutable fluent builder classes |
-| `composer/` | `https://github.com/nssivanitesh/react-ubiquitous-composer` | `main` | PHP Composer — Laravel-friendly DTO classes |
-
-To pull updates for any subtree:
-```bash
-git subtree pull --prefix=nuget https://github.com/nssivanitesh/react-ubiquitous-nuget main --squash
-git subtree pull --prefix=py    https://github.com/nssivanitesh/react-ubiquitous-py    main --squash
-git subtree pull --prefix=composer https://github.com/nssivanitesh/react-ubiquitous-composer main --squash
+└── src/                        # Demo site source (React + TypeScript + Vite)
+    ├── components/             # Shared UI components (CategoryPage, TopBar, etc.)
+    ├── contexts/               # React context (ThemeContext)
+    ├── data/                   # Per-category JSON config objects (fields, feedback, etc.)
+    ├── pages/                  # Per-category page components
+    └── utils/                  # Utilities (codeGen.ts — dynamic builder code generation)
 ```
 
 ---
