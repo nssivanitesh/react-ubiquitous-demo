@@ -2,6 +2,7 @@ import { useState, useCallback, type ComponentType } from 'react'
 import { UIStage, SectionErrorBoundary } from 'react-ubiquitous'
 import type { UIStageConfig, UISectionConfig, I18nMessages, UIElementProps } from 'react-ubiquitous'
 import { useTheme } from '../contexts/ThemeContext'
+import { genDotNet, genPython, genLaravel } from '../utils/codeGen'
 
 export type ComponentStatus = 'active' | 'wip'
 
@@ -27,7 +28,7 @@ interface CategoryPageProps {
   customComponents?: Record<string, ComponentType<UIElementProps>>
 }
 
-type PanelTab = 'preview' | 'config'
+type PanelTab = 'preview' | 'config' | 'dotnet' | 'python' | 'laravel'
 
 export function CategoryPage({
   title,
@@ -143,6 +144,15 @@ export function CategoryPage({
         <button style={tabStyle(panelTab === 'config')} onClick={() => setPanelTab('config')}>
           ⚙️ JSON Config {error ? '⚠' : ''}
         </button>
+        <button style={tabStyle(panelTab === 'dotnet')} onClick={() => setPanelTab('dotnet')}>
+          .NET
+        </button>
+        <button style={tabStyle(panelTab === 'python')} onClick={() => setPanelTab('python')}>
+          Python
+        </button>
+        <button style={tabStyle(panelTab === 'laravel')} onClick={() => setPanelTab('laravel')}>
+          Laravel
+        </button>
         <div style={{ flex: 1 }} />
 
         {/* Feature 7 (1.0.13): readOnly toggle */}
@@ -205,6 +215,16 @@ export function CategoryPage({
         </SectionErrorBoundary>
       )}
 
+      {/* Code tabs: .NET, Python, Laravel */}
+      {(panelTab === 'dotnet' || panelTab === 'python' || panelTab === 'laravel') && (
+        <CodeTab
+          panelTab={panelTab}
+          config={configs[activeIdx]}
+          label={items[activeIdx]?.label}
+          colors={colors}
+        />
+      )}
+
       {/* Config tab */}
       {panelTab === 'config' && (
         <div>
@@ -246,6 +266,105 @@ export function CategoryPage({
           }
         </div>
       )}
+    </div>
+  )
+}
+
+// ── CodeTab ───────────────────────────────────────────────────────────────────
+
+const CODE_TAB_META: Record<string, { label: string; lang: string; gen: (c: object) => string }> = {
+  dotnet:  { label: '.NET',    lang: 'csharp',  gen: c => genDotNet(c as Record<string, unknown>)  },
+  python:  { label: 'Python',  lang: 'python',  gen: c => genPython(c as Record<string, unknown>)  },
+  laravel: { label: 'Laravel', lang: 'php',     gen: c => genLaravel(c as Record<string, unknown>) },
+}
+
+interface CodeTabProps {
+  panelTab: 'dotnet' | 'python' | 'laravel'
+  config: object
+  label: string
+  colors: ReturnType<typeof useTheme>['colors']
+}
+
+function CodeTab({ panelTab, config, label, colors }: CodeTabProps) {
+  const [copied, setCopied] = useState(false)
+  const meta = CODE_TAB_META[panelTab]
+  const code = meta.gen(config)
+
+  function handleCopy() {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  const PKG_LABEL: Record<string, string> = {
+    dotnet:  'ReactUbiquitous.NuGet',
+    python:  'react-ubiquitous-put',
+    laravel: 'react-ubiquitous/composer',
+  }
+
+  return (
+    <div>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0.5rem 1rem',
+        background: '#1e293b',
+        fontSize: '0.72rem',
+        color: '#64748b',
+        fontWeight: 500,
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        borderRadius: '6px 6px 0 0',
+      }}>
+        <span>{meta.label} Builder Code — {label}</span>
+        <span style={{ marginLeft: '0.5rem', color: '#334155' }}>({PKG_LABEL[panelTab]})</span>
+        <div style={{ flex: 1 }} />
+        <button
+          onClick={handleCopy}
+          style={{
+            padding: '0.2rem 0.65rem',
+            fontSize: '0.72rem',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            border: `1px solid ${colors.sidebarBorder}`,
+            background: copied ? '#16a34a' : 'transparent',
+            color: copied ? '#fff' : '#94a3b8',
+            fontWeight: 500,
+            transition: 'background 0.2s, color 0.2s',
+          }}
+        >
+          {copied ? '✓ Copied' : 'Copy'}
+        </button>
+      </div>
+      <pre
+        style={{
+          margin: 0,
+          width: '100%',
+          minHeight: '520px',
+          fontFamily: 'monospace',
+          fontSize: '0.78rem',
+          padding: '0.75rem',
+          background: '#0f172a',
+          color: '#e2e8f0',
+          boxSizing: 'border-box',
+          overflowX: 'auto',
+          overflowY: 'auto',
+          whiteSpace: 'pre',
+          borderRadius: 0,
+        }}
+      >
+        {code}
+      </pre>
+      <div style={{
+        padding: '0.4rem 1rem',
+        background: '#0f2027',
+        color: '#334155',
+        fontSize: '0.72rem',
+        borderRadius: '0 0 6px 6px',
+      }}>
+        Auto-generated from JSON config above — copy and adapt for your {meta.label} project
+      </div>
     </div>
   )
 }
