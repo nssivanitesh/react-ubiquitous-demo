@@ -1,0 +1,29 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published] # Triggered when you create a GitHub Release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' # Use your project's version
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack NuGet Package
+        run: dotnet pack --configuration Release --no-build -o .
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source https://api.nuget.org/v3/index.json

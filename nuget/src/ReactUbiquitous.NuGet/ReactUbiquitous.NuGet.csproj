@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>react-ubiquitous-NuGet</PackageId>
+    <Version>1.0.7</Version>
+    <Authors>nssivanitesh</Authors>
+    <Description>.NET DTOs and builders for react-ubiquitous JSON-driven UI configuration. Compatible with react-ubiquitous npm package v1.0.14.</Description>
+    <PackageReleaseNotes>v1.0.7: Full compliance with api-specification.md — AvatarSectionConfig redesigned, TimelineEvent.Color renamed to Variant, ChartSectionConfig uses flat data+series model, BadgeSectionConfig gains Appearance/Size, StatSectionConfig gains Columns/SubLabel, TableSectionConfig gains Searchable/EmptyMessage.</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\favicon.ico" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
